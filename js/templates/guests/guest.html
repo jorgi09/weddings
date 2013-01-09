@@ -1,0 +1,47 @@
+<td>
+    <span class="badge {{#if response}}badge-info{{/if}}">&nbsp;</span>
+</td>
+<td>
+    <span class="values">
+        {{name.first}} {{name.second}}
+    </span>
+    <span class="edit">
+        <input type="text" class="input-small" placeholder="First name" name="guest-name-first" value="{{name.first}}">
+        <input type="text" class="input-small" placeholder="Second name" name="guest-name-second" value="{{name.second}}">
+    </span>
+</td>
+<td>
+    <span class="values">
+        {{#if accompanying}}{{accompanying.first}} {{accompanying.second}}{{/if}}
+    </span>
+    <span class="edit">
+        <input type="text" class="input-small" placeholder="First name" name="accompanying-name-first" value="{{accompanying.first}}">
+        <input type="text" class="input-small" placeholder="Second name" name="accompanying-name-second" value="{{accompanying.second}}">
+    </span>
+</td>
+<td>
+    {{#if childrens}}{{childrens}}{{/if}}
+</td>
+<td>
+    {{#if confirmed}}
+        <span class="label label-success">Confirmed</span>
+    {{else}}
+        {{#if response}}
+            <span class="label label-important">upset</span>
+        {{else}}
+            <div class="btn-group">
+                <button class="btn btn-mini">Confirmation</button>
+                <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <ul class="">
+                        <li>Yes</li>
+                        <li>No</li>
+                    </ul>
+                </div>
+            </div>
+        {{/if}}
+    {{/if}}
+</td>
+<td>{{#unless response}}<span class="delete">clear</span>{{/unless}}</td>

@@ -1,0 +1,50 @@
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+.sidebar-nav {
+    padding: 9px 0;
+}
+
+table.guests-list tr .edit {
+    display: none;
+}
+
+table.guests-list tr.edited .values {
+    display: none;
+}
+table.guests-list tr.edited .edit {
+    display: inline;
+}
+
+#menu > div {
+    position: fixed;
+    width: 267px;
+}
+
+.guest-item input{
+    margin-bottom: 0;
+}
+
+.list *[colspan] {
+    background: red;
+    color: white;
+    font-weight: 700;
+    text-align: center;
+}
+
+.guest-form {
+    background: #fff;
+    border: 1px solid red;
+}
+
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background: rgba(0,0,0,.5);
+    
+}
