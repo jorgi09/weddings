@@ -33,7 +33,7 @@ define([
                 this.collection.on('all', this.render, this);
                 this.collection.fetch();
             },
-            render: function () {
+            render: function (action) {
                 console.log('view', 'Guests:render', arguments);
                 this.$statistics.html(this.tamplateInformation(this.statistics()));
             },

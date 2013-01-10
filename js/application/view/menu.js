@@ -27,6 +27,10 @@ define([
             console.log('view', 'Menu:active', arguments);
             this.$el.find('.active').removeClass('active');
             $(e.target).parent().addClass('active');
+        },
+        changeActive: function (url) {
+            this.$el.find('.active').removeClass('active');
+            this.$el.find('[href="#/' + url + '"]').parent().addClass('active')
         }
     });
     

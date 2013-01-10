@@ -12,7 +12,8 @@ define([
     var Router = Backbone.Router.extend({
         initialize: function () {
             this.$content = $('#contents');
-            (new Menu()).render();
+            this.menu = new Menu();
+            this.menu.render();
         },
         routes: {
             '': 'dashboard',
@@ -23,11 +24,12 @@ define([
             '*action': 'showError'
         },
         dashboard: function () {
-            //alert('dashboard');
+            console.log(' ==========----------============\n <<<<<<<<< DASHBOARD >>>>>>>>>\n ==========----------============');
             this.$content.empty();
         },
         showGuestList: function () {
-            //alert('guest-list');
+            console.log(' ==========----------============\n <<<<<<<<< GUEST LIST >>>>>>>>>\n ==========----------============');
+            this.menu.changeActive('guest-list');
             this.$content.empty();
             (new Guests).render();
         },

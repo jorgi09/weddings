@@ -77,7 +77,6 @@ define([
         },
         accompanying: function (e) {
             var checkbox = $(e.target);
-            //console.log(checkbox.parents('.edit').remove());
             checkbox.parents('.edit').toggleClass('checkbox-hidden', checkbox.is(":checked"));
             this.model.set('accompanying', checkbox.is(":checked"), {silent: true});
         }
