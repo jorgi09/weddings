@@ -15,20 +15,12 @@ define([
         className: 'guest-item',
         template: Handlebars.compile(template),
         editClass: 'edited',
-        inputs: {
-            guest : {
-                first: 'guest-name-first',
-                second: 'guest-name-second'
-            },
-            accompanying: {
-                first: 'accompanying-name-first',
-                second: 'accompanying-name-second'
-            }
-        },
         events: {
-            'dblclick': 'edit',
-            'click .dropdown-menu li': 'confirmation',
-            'click .delete': 'deleteItem'
+            'click .button-edit': 'edit',
+            'click .button-save': 'save',
+            'click .button-delete-item': 'deleteItem',
+            'blur input[type="text"]': 'update', 
+            'click .dropdown-menu li': 'changeResponse'
         },
         initialize: function () {
             console.log('view', 'Guest:initialize', arguments);
@@ -43,72 +35,44 @@ define([
         },
         edit: function () {
             console.log('view', 'Guest:edit', arguments);
-            if(!this.isConfirmed()) {
-                this.$el.toggleClass(this.editClass, this.isEdit);
-                if(!this.isEdit()) {
-                    this.save();
-                }
-            }
-        },
-        isConfirmed: function () {
-            console.log('view', 'Guest:isConfirmed', arguments);
-            return this.model.get('response');
+            this.$el.toggleClass(this.editClass);
         },
         isEdit: function () {
             console.log('view', 'Guest:isEdit', arguments);
             return this.$el.hasClass(this.editClass);
         },
-        save: function () {
-            console.log('view', 'Guest:save', arguments);
-            this.model.save(this.getInputs());
-        },
-        getInputs: function () {
-            console.log('view', 'Guest:getInputs', arguments);
-            var inputs = this.$el.find('input'),
-                guestFirst = inputs.filter('[name=' + this.inputs.guest.first + ']').val().trim(),
-                guestSecond = inputs.filter('[name=' + this.inputs.guest.second + ']').val().trim(),
-                accompanyingFirst = inputs.filter('[name=' + this.inputs.accompanying.first + ']').val().trim(),
-                accompanyingSecond = inputs.filter('[name=' + this.inputs.accompanying.second + ']').val().trim(),
-                chenges = {};
-            
-            if (guestFirst && guestSecond) {
-                chenges.name = {
-                    first: guestFirst,
-                    second: guestSecond
-                };
-            }
-            if (accompanyingFirst && accompanyingSecond) {
-                chenges.accompanying = {
-                    first: accompanyingFirst,
-                    second: accompanyingSecond
-                };
-            }
-            return chenges;
-        },
-        confirmation: function (e) {
-            console.log('view', 'Guest:confirmation', arguments);
-            var value = $(e.target).text();
+        changeResponse: function (e) {
+            console.log('view', 'Guest:response', arguments);
+            var value = $(e.target).text(),
+                response = {};
             if (value.toLowerCase() === 'yes') {
-                this.model.save({
-                    confirmed: true,
-                    response: true
-                });
+                response = {confirmed: true, response: true};
             } else {
-                this.model.save({
-                    confirmed: false,
-                    response: true
-                });
+                response = {confirmed: false, response: true};
             }
+            this.model.save(response);
         },
         deleteItem: function () {
             console.log('view', 'Guest:deleteItem', arguments);
             var question = new Modal({title: 'Warning', body: 'Are you sure you want to delete?'});
             question.render();
-            question.once('modal:yes', this.clear, this);
+            question.once('modal:yes', this.destroy, this);
         },
-        clear: function () { 
-            console.log('view', 'Guest:clear', arguments);
+        destroy: function () { 
+            console.log('view', 'Guest:destroy', arguments);
             this.model.destroy();
+        },
+        update: function (e) {
+            console.log('view', 'Guest:update', arguments);
+            var input = $(e.target),
+                value = input.val(),
+                name = input.attr('name');
+            
+            this.model.set(name, value, {silent: true});
+        },
+        save: function () {
+            this.$el.toggleClass(this.editClass);
+            this.model.save();
         }
     });
     

@@ -20,7 +20,7 @@ define([
             template: Handlebars.compile(template),
             tamplateInformation: Handlebars.compile(informations),
             events: {
-                'click .add-new': 'addNew'
+                'click .button-add-new': 'addNew'
             },
             initialize: function () {
                 console.log('view', 'Guests:initialize', arguments);

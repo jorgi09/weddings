@@ -38,16 +38,15 @@ define([
         inputs: function () {
             console.log('view', 'GuestFrom:inputs', arguments);
             var data = {};
-            if (this.input['guest-name-first'] || this.input['guest-name-second']) {
-                data.name = {};
-                data.name.first = this.input['guest-name-first'] || '';
-                data.name.second = this.input['guest-name-second'] || '';
+            if (this.input['guest-first'] || this.input['guest-second']) {
+                data['guest-first'] = this.input['guest-first'] || '';
+                data['guest-second'] = this.input['guest-second'] || '';
             }
             
-            if (this.input['accompanying-name-first'] || this.input['accompanying-name-second']) {
-                data.accompanying = {};
-                data.accompanying.first = this.input['accompanying-name-first'] || '';
-                data.accompanying.second = this.input['accompanying-name-second'] || '';
+            if (this.input['accompanying-first'] || this.input['accompanying-second']) {
+                data.accompanying = true;
+                data['accompanying-first'] = this.input['accompanying-first'] || '';
+                data['accompanying-first'] = this.input['accompanying-second'] || '';
             }
             if (this.input['childs'] && parseInt(this.input['childs'], 10) !== 0) {
                 data.childrens = parseInt(this.input['childs'], 10)

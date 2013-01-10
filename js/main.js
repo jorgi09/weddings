@@ -10,7 +10,8 @@ require.config({
         backbone: 'vendor/backbone',
         handlebars: 'vendor/handlebars',
         bootstrap: 'vendor/bootstrap.min',
-        'backbone.localStorage': 'vendor/backbone.localStorage'
+        'backbone.localStorage': 'vendor/backbone.localStorage',
+        templates: '../templates'
     },
     shim: {
         underscore: {
@@ -34,26 +35,7 @@ require.config({
 });
 
 require([
-    'app'
+    'application/app'
 ], function (app) {
     app.initialize();
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

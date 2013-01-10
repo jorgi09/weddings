@@ -9,10 +9,8 @@ define([
     console.log('File: model/guest');
     var Guest = Backbone.Model.extend({
         defaults: {
-            name: {
-                first: 'First name',
-                second: 'Second name'
-            },
+            'guest-first': 'Gest',
+            'guest-second': 'Gest',
             accompanying: false,
             childerns: false,
             confirmed: false,
@@ -34,22 +32,3 @@ define([
     
     return Guest;
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

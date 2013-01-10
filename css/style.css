@@ -48,3 +48,10 @@ table.guests-list tr.edited .edit {
     background: rgba(0,0,0,.5);
     
 }
+
+.badge-changes.badge:empty {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    padding: 0;
+}
