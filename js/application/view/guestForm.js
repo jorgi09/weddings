@@ -46,7 +46,7 @@ define([
             if (this.input['accompanying-first'] || this.input['accompanying-second']) {
                 data.accompanying = true;
                 data['accompanying-first'] = this.input['accompanying-first'] || '';
-                data['accompanying-first'] = this.input['accompanying-second'] || '';
+                data['accompanying-second'] = this.input['accompanying-second'] || '';
             }
             if (this.input['childs'] && parseInt(this.input['childs'], 10) !== 0) {
                 data.childrens = parseInt(this.input['childs'], 10)
