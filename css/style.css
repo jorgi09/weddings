@@ -55,3 +55,13 @@ table.guests-list tr.edited .edit {
     height: 12px;
     padding: 0;
 }
+
+.edit .accompanying {
+    display: none;
+}
+.edit.checkbox-hidden .accompanying {
+    display: inline;
+}
+.edit.checkbox-hidden .checkbox {
+    display: none;
+}

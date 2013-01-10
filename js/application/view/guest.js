@@ -20,7 +20,8 @@ define([
             'click .button-save': 'save',
             'click .button-delete-item': 'deleteItem',
             'blur input[type="text"]': 'update', 
-            'click .dropdown-menu li': 'changeResponse'
+            'click .dropdown-menu li': 'changeResponse',
+            'change input[type="checkbox"]': 'accompanying'
         },
         initialize: function () {
             console.log('view', 'Guest:initialize', arguments);
@@ -73,6 +74,12 @@ define([
         save: function () {
             this.$el.toggleClass(this.editClass);
             this.model.save();
+        },
+        accompanying: function (e) {
+            var checkbox = $(e.target);
+            //console.log(checkbox.parents('.edit').remove());
+            checkbox.parents('.edit').toggleClass('checkbox-hidden', checkbox.is(":checked"));
+            this.model.set('accompanying', checkbox.is(":checked"), {silent: true});
         }
     });
     

@@ -14,12 +14,25 @@
 </td>
 <td>
     <span class="values">
-        {{#if accompanying}}{{accompanying-first}} {{accompanying-second}}{{/if}}
+        {{#if accompanying}}
+            {{#if accompanying-first}}
+                {{accompanying-first}} {{accompanying-second}}
+            {{else}}
+                an attendant
+            {{/if}}
+        {{/if}}
     </span>
     {{#unless response}}
-        <span class="edit">
-            <input type="text" class="input-small" placeholder="First name" name="accompanying-first" value="{{#if accompanying}}{{accompanying-first}}{{/if}}">
-            <input type="text" class="input-small" placeholder="Second name" name="accompanying-second" value="{{#if accompanying}}{{accompanying-second}}{{/if}}">
+        <span class="edit {{#if accompanying}}checkbox-hidden{{/if}}">
+            {{#unless accompanying}}
+                <label class="checkbox inline">
+                  <input type="checkbox" id="inlineCheckbox1" value="option1"> with an attendant?
+                </label>
+            {{/unless}}
+            <span class="accompanying">
+                <input type="text" class="input-small" placeholder="First name" name="accompanying-first" value="{{#if accompanying}}{{accompanying-first}}{{/if}}">
+                <input type="text" class="input-small" placeholder="Second name" name="accompanying-second" value="{{#if accompanying}}{{accompanying-second}}{{/if}}">
+            </span>
         </span>
     {{/unless}}
 </td>
