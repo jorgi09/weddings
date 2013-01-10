@@ -5,7 +5,7 @@
 
 define([
   'backbone',
-  'router'
+  'application/router'
 ], function (Backbone, Router) {
     var initialize = function () {
         Router.initialize();
