@@ -7,8 +7,9 @@ define([
   'jquery',
   'backbone',
   'application/view/menu',
-  'application/view/guests'
-], function ($, Backbone, Menu, Guests) {
+  'application/view/guests',
+  'application/view/gifts'
+], function ($, Backbone, Menu, Guests, Gifts) {
     var Router = Backbone.Router.extend({
         initialize: function () {
             this.$content = $('#contents');
