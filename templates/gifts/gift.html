@@ -1,0 +1,19 @@
+{{#if image-small}}
+    <a href="{{image-big}}" class="pull-left colorbox">
+        <img src="{{image-small}}" class="media-object" alt="{{name}}" width="64" height="64">
+    </a>
+{{else}}
+    <a href="#" class="pull-left no-image">
+        <img src="img/gift-no-image.png" class="media-object" alt="{{name}}" width="64" height="64">
+    </a>
+{{/if}}
+<div class="pull-right">
+    {{#if accepted}}
+        <span class="label label-success">Accepted</span>
+    {{else}}
+        <button class="btn btn-mini btn-danger button-delete-item"><span class="icon-trash icon-white"></span></button>
+    {{/if}}
+</div>
+<div class="media-body">
+    <h4 class="media-heading">{{name}}</h4>
+</div>

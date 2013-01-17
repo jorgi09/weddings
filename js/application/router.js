@@ -34,7 +34,10 @@ define([
             (new Guests).render();
         },
         showGiftList: function () {
-            //alert('gift-list')
+            console.log(' ==========----------============\n <<<<<<<<< GIFT LIST >>>>>>>>>\n ==========----------============');
+            this.menu.changeActive('gift-list');
+            this.$content.empty();
+            (new Gifts).render();
         },
         showToDo: function () {
             //alert('todo-list')
