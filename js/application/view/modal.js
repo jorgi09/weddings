@@ -10,8 +10,8 @@ define([
 ], function (Backbone, Handlebars, template) {
     console.log('File: view/modal');
     var Modal = Backbone.View.extend({
-        className: 'overlay',
         template: Handlebars.compile(template),
+        className: 'overlay',
         events: {
             'click .modal-close': 'close',
             'click .modal-save': 'save',
@@ -23,6 +23,7 @@ define([
         initialize: function (data) {
             console.log('view', 'Modal:initialize', arguments);
             this.$el.html(this.template(data || null));
+            this.render();
         },
         render: function () {
             console.log('view', 'Modal:render', arguments);

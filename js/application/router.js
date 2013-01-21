@@ -8,8 +8,10 @@ define([
   'backbone',
   'application/view/menu',
   'application/view/guests',
-  'application/view/gifts'
-], function ($, Backbone, Menu, Guests, Gifts) {
+  'application/collection/guests',
+  'application/view/gifts',
+  'application/collection/gifts'
+], function ($, Backbone, Menu, Guests, GuestsCollection, Gifts, GiftsCollection) {
     var Router = Backbone.Router.extend({
         initialize: function () {
             this.$content = $('#contents');
@@ -30,15 +32,19 @@ define([
         },
         showGuestList: function () {
             console.log(' ==========----------============\n <<<<<<<<< GUEST LIST >>>>>>>>>\n ==========----------============');
+            var collection = new GuestsCollection(),
+                view = new Guests({collection: collection});
+            this.$content.html(view.el);
+            collection.fetch();
             this.menu.changeActive('guest-list');
-            this.$content.empty();
-            (new Guests).render();
         },
         showGiftList: function () {
             console.log(' ==========----------============\n <<<<<<<<< GIFT LIST >>>>>>>>>\n ==========----------============');
+            var collection = new GiftsCollection(),
+                view = new Gifts({collection: collection});
+            this.$content.html(view.el);
+            collection.fetch();
             this.menu.changeActive('gift-list');
-            this.$content.empty();
-            (new Gifts).render();
         },
         showToDo: function () {
             //alert('todo-list')

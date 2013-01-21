@@ -13,14 +13,14 @@ define([
     var GiftFrom = Modal.extend({
         template: Handlebars.compile(template),
         events: {
-            'blur input[type="text"]': 'update'
+            'blur input[type="text"]': 'update',
+            'change input[type="file"]': 'update'
         },
         initialize: function () {
             console.log('view', 'GiftFrom:initialize', arguments);
-            this.events = _.extend({},Modal.prototype.events,this.events)
-            this.$el.html(this.template({title: 'New Gift'}));
+            this.events = _.extend({},Modal.prototype.events,this.events);
+            this.constructor.__super__.initialize.apply(this, arguments);
             this.input = {};
-            return this;
         },
         save: function (e) {
             console.log('view', 'GiftFrom:save', arguments);
@@ -42,6 +42,9 @@ define([
             var data = {};
             if (this.input['name']) {
                 data['name'] = this.input['name'] || '';
+            }
+            if (this.input['image-big']) {
+                data['image-big'] = this.input['image-big'] || '';
             }
             
             return data;

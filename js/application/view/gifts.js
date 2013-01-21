@@ -6,16 +6,13 @@
 define([
   'backbone',
   'handlebars',
-  'application/collection/gifts',
   'application/view/gift',
   'application/view/giftForm',
   'text!templates/gifts/gifts.html',
   'bootstrap'
-], function (Backbone, Handlebars, Collection, Gift, GiftForm, template) {
+], function (Backbone, Handlebars, Gift, GiftForm, template) {
     console.log('File: view/gifts');
-    var collection = new Collection(),
-        Gifts = Backbone.View.extend({
-            el: '#contents',
+    var Gifts = Backbone.View.extend({
             childrens: [],
             template: Handlebars.compile(template),
             events: {
@@ -25,11 +22,9 @@ define([
                 console.log('view', 'Gifts:initialize', arguments);
                 this.$el.html(this.template());
                 this.$list = this.$el.find('.media-list');
-                this.collection = collection;
                 this.collection.on('add', this.addOne, this);
                 this.collection.on('reset', this.addAll, this);
                 this.collection.on('all', this.render, this);
-                this.collection.fetch();
             },
             render: function () {
                 console.log('view', 'Gifts:render', arguments);
@@ -46,8 +41,7 @@ define([
             },
             addNew: function () {
                 console.log('view', 'Gifts:addNew', arguments);
-                var form = new GiftForm();
-                form.render();
+                var form = new GiftForm({title: 'New Gift'});
                 form.once('modal:save', function (data) {
                     this.collection.create(data);
                 }, this);

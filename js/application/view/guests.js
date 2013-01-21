@@ -6,17 +6,14 @@
 define([
   'backbone',
   'handlebars',
-  'application/collection/guests',
   'application/view/guest',
   'application/view/guestForm',
   'text!templates/guests/guests.html',
   'text!templates/guests/informations.html',
   'bootstrap'
-], function (Backbone, Handlebars, Collection, Model, GuestFrom, template, informations) {
+], function (Backbone, Handlebars, Model, GuestFrom, template, informations) {
     console.log('File: view/guests');
-    var guests = new Collection(),
-        Guests = Backbone.View.extend({
-            el: '#contents',
+    var Guests = Backbone.View.extend({
             template: Handlebars.compile(template),
             tamplateInformation: Handlebars.compile(informations),
             events: {
@@ -27,11 +24,9 @@ define([
                 this.$el.append(this.template());
                 this.$statistics = this.$el.find('.statistics');
                 this.$list = this.$el.find('.list');
-                this.collection = guests;
                 this.collection.on('add', this.addOne, this);
                 this.collection.on('reset', this.addAll, this);
                 this.collection.on('all', this.render, this);
-                this.collection.fetch();
             },
             render: function (action) {
                 console.log('view', 'Guests:render', arguments);
@@ -82,8 +77,7 @@ define([
             },
             addNew: function () {
                 console.log('view', 'Guests:addNew', arguments);
-                var form = new GuestFrom();
-                form.render();
+                var form = new GuestFrom({title: 'New Guest'});
                 form.once('modal:save', function (data) {
                     this.collection.create(data);
                 }, this);

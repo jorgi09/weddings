@@ -64,3 +64,15 @@ table.guests-list tr.edited .edit {
 .edit.checkbox-hidden .checkbox {
     display: none;
 }
+
+.scroll-panel {
+    overflow: hidden;
+}
+
+.scroll-panel:hover {
+    overflow-y: auto;
+}
+
+.gifts .scroll-panel{
+    max-height: 600px;
+}

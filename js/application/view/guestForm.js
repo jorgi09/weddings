@@ -19,8 +19,8 @@ define([
         },
         initialize: function () {
             console.log('view', 'GuestFrom:initialize', arguments);
-            this.events = _.extend({},Modal.prototype.events,this.events)
-            this.$el.html(this.template({title: 'New Guest'}));
+            this.events = _.extend({},Modal.prototype.events,this.events);
+            this.constructor.__super__.initialize.apply(this, arguments);
             this.input = {};
         },
         save: function (e) {
@@ -61,7 +61,6 @@ define([
             return data;
         },
         checkbox: function (e) {
-            console.log('fdsfsdfsfsfsdfsd')
             var $el = $(e.target);
             this.input[$el.attr('name')] = $el.is(":checked");
         }
