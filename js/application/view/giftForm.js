@@ -24,7 +24,7 @@ define([
         },
         save: function (e) {
             console.log('view', 'GiftFrom:save', arguments);
-            this.trigger('modal:save', this.inputs());
+            this.trigger('modal:save', this.input);
             this.remove(e);
             return this;
         },
@@ -36,18 +36,6 @@ define([
                 this.input[$el.attr('name')] = value;
             }
             return this;
-        },
-        inputs: function () {
-            console.log('view', 'GiftFrom:inputs', arguments);
-            var data = {};
-            if (this.input['name']) {
-                data['name'] = this.input['name'] || '';
-            }
-            if (this.input['image-big']) {
-                data['image-big'] = this.input['image-big'] || '';
-            }
-            
-            return data;
         }
     });
     return GiftFrom;

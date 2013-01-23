@@ -7,8 +7,9 @@ define([
   'backbone',
   'handlebars',
   'application/view/modal',
-  'text!templates/gifts/gift.html'
-], function (Backbone, Handlebars, Modal, template) {
+  'text!templates/gifts/gift.html',
+  'application/view/buttons'
+], function (Backbone, Handlebars, Modal, template, Buttons) {
     console.log('File: view/gift');
     var Gift = Backbone.View.extend({
         tagName: 'li',
@@ -30,7 +31,7 @@ define([
         },
         deleteItem: function () {
             console.log('view', 'Gift:deleteItem', arguments);
-            var question = new Modal({title: 'Warning', body: 'Are you sure you want to delete?'});
+            var question = new Modal({title: 'Warning', body: 'Are you sure you want to delete this item?'});
             question.render();
             question.once('modal:yes', this.destroy, this);
             return this;

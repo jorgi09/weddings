@@ -18,6 +18,7 @@ define([
         initialize: function () {
             console.log('view', 'Menu:initialize', arguments);
             this.$el.append(this.template());
+            
         },
         render: function () {
             console.log('view', 'Menu:render', arguments);
